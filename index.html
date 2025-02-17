@@ -1,53 +1,131 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contattaci</title>
+    <title>Web3TradeNow.com - Buy the Domain</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+        }
+        h1 {
+            margin: 0;
+        }
+        h2 {
+            margin-top: 10px;
+            font-size: 1.5em;
+            color: #333;
+        }
+        .container {
+            margin: 40px auto;
+            padding: 20px;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .cta {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+        input, textarea {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Contattaci</h1>
+<header>
+    <h1>Web3TradeNow.com</h1>
+    <h2>The Perfect Domain for the Future of Web3</h2>
+</header>
 
+<div class="container">
+    <h2>Why Buy Web3TradeNow.com?</h2>
+    <p>With the rapid development of Web3 technologies, having the right domain is essential to stand out in the market. This domain is ideal for businesses in decentralized finance, cryptocurrencies, or Web3-related projects.</p>
+    
+    <p class="cta">Don't miss the opportunity to own a premium domain for your Web3 project.</p>
+
+    <h3>Contact us for more information</h3>
     <form id="contact-form">
-        <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="message">Messaggio:</label>
-        <textarea id="message" name="message" required></textarea>
-
-        <button type="submit">Invia</button>
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit" class="button">Send Message</button>
     </form>
+</div>
 
-    <!-- Aggiungi il codice di EmailJS -->
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<footer>
+    <p>Copyright © 2025 Web3TradeNow.com</p>
+</footer>
 
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("nuVAPbjNFwW1GUkr9");  // Public Key di EmailJS
-        })();
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    // Initialize EmailJS with your Public Key
+    (function() {
+        emailjs.init("nuVAPbjNFwW1GUkr9");  // Public Key you provided
+    })();
 
-        // Quando il modulo viene inviato
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();  // Impedisce il comportamento predefinito del form (non ricarica la pagina)
+    // Handling form submission
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+        event.preventDefault();
 
-            // Raccogli i dati del modulo
-            const formData = new FormData(this);
-            
-            // Invia l'email tramite EmailJS
-            emailjs.sendForm('service_n01uol9', 'template_tl9a8a5', this)
-                .then(function(response) {
-                    console.log('Successo:', response);
-                    alert('Messaggio inviato con successo!');
-                }, function(error) {
-                    console.log('Errore:', error);
-                    alert('Errore nell\'invio del messaggio. Riprova più tardi.');
-                });
-        });
-    </script>
+        // Get form data
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const message = form.message.value;
+
+        const templateParams = {
+            from_name: name,
+            from_email: email,
+            message: message
+        };
+
+        // Send message via EmailJS
+        emailjs.send("service_n01uol9", "template_tl9a8a5", templateParams)
+            .then(function(response) {
+                alert("Message sent successfully!");
+                form.reset();  // Reset the form after submission
+            }, function(error) {
+                alert("Error sending message, please try again.");
+            });
+    });
+</script>
 
 </body>
 </html>
