@@ -1,39 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web3TradeNow.com</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Contattaci</title>
 </head>
 <body>
-    <header>
-        <h1>Web3TradeNow.com</h1>
-        <p>Your Premium Domain for Blockchain and Web3 Trading Solutions</p>
-    </header>
 
-    <section class="description">
-        <p>Unlock the potential of Web3 trading solutions with this exclusive domain. Perfect for exchanges, DeFi projects, and more!</p>
-    </section>
+    <h1>Contattaci</h1>
 
-    <section class="contact-form">
-        <h2>Contact Us</h2>
-        <form action="mailto:your-email@example.com" method="POST" enctype="multipart/form-data">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+    <form id="contact-form">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
 
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
+        <label for="message">Messaggio:</label>
+        <textarea id="message" name="message" required></textarea>
 
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
+        <button type="submit">Invia</button>
+    </form>
 
-    <footer>
-        <p>© 2025 Web3TradeNow.com. All rights reserved.</p>
-    </footer>
+    <!-- Aggiungi il codice di EmailJS -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("nuVAPbjNFwW1GUkr9");  // Public Key di EmailJS
+        })();
+
+        // Quando il modulo viene inviato
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();  // Impedisce il comportamento predefinito del form (non ricarica la pagina)
+
+            // Raccogli i dati del modulo
+            const formData = new FormData(this);
+            
+            // Invia l'email tramite EmailJS
+            emailjs.sendForm('service_n01uol9', 'template_tl9a8a5', this)
+                .then(function(response) {
+                    console.log('Successo:', response);
+                    alert('Messaggio inviato con successo!');
+                }, function(error) {
+                    console.log('Errore:', error);
+                    alert('Errore nell\'invio del messaggio. Riprova più tardi.');
+                });
+        });
+    </script>
+
 </body>
 </html>
